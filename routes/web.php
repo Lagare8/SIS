@@ -19,7 +19,15 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('admin/dashboard', [AdminController::class, 'dashboard']); // Fixed: Added missing semicolon
+    Route::get('admin/dashboard', [AdminController::class, 'dashboard']); 
 });
+
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
+})->name('admin.dashboard');
+
+Route::get('/admin/students', function () {
+    return view('admin.students');
+})->name('admin.students');
 
 require __DIR__.'/auth.php';
